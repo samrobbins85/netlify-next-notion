@@ -1,6 +1,6 @@
 const fetch = require("node-fetch");
 const database_id = "dd010e0a312d481e94dbf93d9d81094d";
-exports.handler = async function (event, context) {
+exports.handler = async function (event) {
   const form = JSON.parse(event.body).payload.data;
   try {
     const new_row = {
@@ -17,10 +17,13 @@ exports.handler = async function (event, context) {
             },
           ],
         },
+        Email: {
+          email: form.email,
+        },
       },
     };
 
-    const response = await fetch("https://api.notion.com/v1/pages", {
+    await fetch("https://api.notion.com/v1/pages", {
       method: "POST",
       headers: {
         "Notion-Version": "2021-08-16",
@@ -29,13 +32,13 @@ exports.handler = async function (event, context) {
       },
       body: JSON.stringify(new_row),
     });
-    const data = await response.json();
-    console.log(data);
   } catch {
     console.log(error);
   }
   return {
-    statusCode: 200,
-    body: "Hi " + form.name,
+    statusCode: 301,
+    headers: {
+      Location: "success",
+    },
   };
 };
