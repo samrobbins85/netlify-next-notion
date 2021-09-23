@@ -1,0 +1,2 @@
+[template.environment]
+  NOTION_TOKEN = "change me for your netlify token"
