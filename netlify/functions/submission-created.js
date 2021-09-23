@@ -38,7 +38,7 @@ exports.handler = async function (event) {
   return {
     statusCode: 301,
     headers: {
-      Location: "success",
+      Location: "/success",
     },
   };
 };
