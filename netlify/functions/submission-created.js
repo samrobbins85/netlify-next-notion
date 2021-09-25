@@ -36,9 +36,6 @@ exports.handler = async function (event) {
     console.log(error);
   }
   return {
-    statusCode: 301,
-    headers: {
-      Location: "/success",
-    },
+    statusCode: 200,
   };
 };
