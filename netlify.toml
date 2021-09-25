@@ -1,2 +1,4 @@
 [template.environment]
-  NOTION_TOKEN = "change me for your netlify token"
+  NOTION_TOKEN = "change me for your notion token"
+  DATABASE_ID = "change me for your database id"
+ 
