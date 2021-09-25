@@ -1,7 +1,8 @@
-const fetch = require("node-fetch");
+const { Client } = require("@notionhq/client");
 const database_id = "dd010e0a312d481e94dbf93d9d81094d";
 exports.handler = async function (event) {
   const form = JSON.parse(event.body).payload.data;
+  const notion = new Client({ auth: process.env.NOTION_TOKEN });
   try {
     const new_row = {
       parent: {
@@ -22,16 +23,7 @@ exports.handler = async function (event) {
         },
       },
     };
-
-    await fetch("https://api.notion.com/v1/pages", {
-      method: "POST",
-      headers: {
-        "Notion-Version": "2021-08-16",
-        Authorization: `Bearer ${process.env.NOTION_TOKEN}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(new_row),
-    });
+    await notion.pages.create(new_row);
   } catch {
     console.log(error);
   }
