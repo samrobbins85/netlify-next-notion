@@ -2,7 +2,7 @@ export default function Home() {
   return (
     <main>
       <h1>Netlify Forms to Notion</h1>
-      <form name="contact" method="POST" data-netlify="true" action="/success">
+      <form name="contact" method="POST" data-netlify="true">
         <p>
           <label>
             Your Name: <input type="text" name="name" />
@@ -16,6 +16,7 @@ export default function Home() {
         <p>
           <button type="submit">Send</button>
         </p>
+        <input type="hidden" name="form-name" value="contact" />
       </form>
     </main>
   );
